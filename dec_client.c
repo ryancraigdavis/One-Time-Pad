@@ -88,7 +88,7 @@ int main(int argc, char *argv[]) {
       exit(1);
     }
   }
-  printf("%d\n",3);
+
   // Same code as above, open the key file and read it in
   key_read_dec = fopen(argv[2], "r+");
   if (key_read_dec) {
@@ -117,7 +117,7 @@ int main(int argc, char *argv[]) {
     fprintf(stderr, "Error: key ‘%s’ is too short\n",argv[2]);
     exit(1);
   }
-  printf("%d\n",4);
+
   // Set buffer length and the buffer to a size of 2x the input file
   // Buffer will start with a string DEC to differentiate it from the Enc client
   // Buffer will end with @@ that will indicate the end of the string
@@ -134,7 +134,7 @@ int main(int argc, char *argv[]) {
 
   // Finally add on the terminating chars
   strcat(buffer_dec, "@@");
-  printf("%d\n",5);
+
   // Create ints for reading/writing into the socket
   // Create the socket address struct
   int socketFD_dec, portNumber_dec, charsWritten_dec, charsRead_dec;
@@ -145,7 +145,7 @@ int main(int argc, char *argv[]) {
     fprintf(stderr, "USAGE: %s hostname port\n", argv[0]); 
     exit(1); 
   } 
-  printf("%d\n",6);
+
   // Create a socket
   socketFD_dec = socket(AF_INET, SOCK_STREAM, 0); 
   if (socketFD_dec < 0){
@@ -161,7 +161,7 @@ int main(int argc, char *argv[]) {
     fprintf(stderr, "CLIENT: ERROR connecting");
     exit(1);
   }
-  printf("%d\n",7);
+
   // Write to the server checking to make sure all the chars were written
   charsWritten_dec = send(socketFD_dec, buffer_dec, strlen(buffer_dec), 0);
   if (charsWritten_dec < 0){
@@ -170,7 +170,7 @@ int main(int argc, char *argv[]) {
   if (charsWritten_dec < strlen(buffer_dec)){
     fprintf(stderr, "CLIENT: WARNING: Not all data written to socket!\n");
   }
-  printf("%d\n",8);
+
   // Set buffer to null terminated chars, creates a socket buffer to read in chunks
   memset(buffer_dec, '\0', buffer_length_dec);
   char socket_buffer_dec[1000];

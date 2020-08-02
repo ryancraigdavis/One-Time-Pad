@@ -171,11 +171,14 @@ int main(int argc, char *argv[]){
             key_int = 26;
           }
 
-          if (text_int - key_int < 0) {
-            plain_text[i] = ((text_int - key_int + 26) % 26)+65;
+          if (text_int - key_int < 0 && ((text_int - key_int + 27) % 27) == 26) {
+            plain_text[i] = 32;
+          } else if (text_int - key_int >= 0 && ((text_int - key_int) % 27) == 26) {
+            plain_text[i] = 32;
+          } else if (text_int - key_int < 0 && ((text_int - key_int + 27) % 27) != 26) {
+            plain_text[i] = (((text_int - key_int) + 27) % 27) + 65;
           } else {
-          // Add them together then put the modulus result in cypher_text
-            plain_text[i] = ((text_int - key_int) % 26)+65;
+            plain_text[i] = ((text_int - key_int) % 27) + 65;
           }
         }
 

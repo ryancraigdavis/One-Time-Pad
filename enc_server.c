@@ -171,7 +171,11 @@ int main(int argc, char *argv[]){
           }
 
         // Add them together then put the modulus result in cypher_text
-          cypher_text[i] = ((text_int + key_int) % 26)+65;
+          if (((text_int + key_int) % 27) == 26) {
+            cypher_text[i] = 32;
+          } else {
+            cypher_text[i] = ((text_int + key_int) % 27)+65;
+          }
         }
 
         // Add "@@" onto the end of the full buffer
