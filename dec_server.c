@@ -237,7 +237,8 @@ int main(int argc, char *argv[]){
       }
     }
 
-    // Close the connection socket for this client
+    // Close the connection socket for this client and terminates child processes
+    wait(NULL);
     close(connectionSocket); 
   }
   // Close the listening socket
