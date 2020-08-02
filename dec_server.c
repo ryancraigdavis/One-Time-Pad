@@ -6,6 +6,7 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <stdbool.h>
+#include <sys/wait.h>
 
 // Set up the address struct for the server socket
 void setupAddressStruct(struct sockaddr_in* address, int portNumber){
